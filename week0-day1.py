@@ -1,8 +1,10 @@
 def nth_fibonacci(n):
-    if n < 2:
+    if n == 1:
         return 1
+    elif n == 2:
+        return 2
     else:
-        return n + nth_fibonacci(n-1)
+        return nth_fibonacci(n - 1) + nth_fibonacci(n-2)
 
 
 def sum_of_digits(n):
@@ -24,12 +26,10 @@ def sum_of_divisors(n):
 def is_prime(n):
     if n < 2:
         return False
-    for i in range(2, n/2):
-        #print i
+    for i in range(2, n/2+1):
         if n % i == 0:
             return False
     return True
-
 
 def prime_number_of_divisors(n):
     counter = 0
@@ -105,10 +105,10 @@ def count_consonants(words):
 
 
 def number_to_list(n):
-    x = list(str(n))
-    for i in range(0, len(x)):
-        x[i] = int(x[i])
-    return x
+    result = list(str(n))
+    for i in range(0, len(result)):
+        result[i] = int(result[i])
+    return result
 
 
 def list_to_number(digits):
@@ -143,17 +143,16 @@ def is_decreasing(seq):
 
 
 def zero_incert(n):
-    y = []
-    x = list(str(n))
-    for i in range(0, len(x)):
-        print(i)
-        print(i - 1)
-        if (x[i] == x[i - 1] or (int(x[i])+int(x[i - 1])) % 10 == 0)and i != 0:
-            y.append('0')
-            y.append(x[i])
+    result = []
+    digits = list(str(n))
+    for i in range(0, len(digits)):
+        if (digits[i] == digits[i - 1] or
+           (int(digits[i])+int(digits[i - 1])) % 10 == 0)and i != 0:
+            result.append('0')
+            result.append(digits[i])
         else:
-            y.append(x[i])
-    return int("".join(y))
+            result.append(digits[i])
+    return int("".join(result))
 
 
 def sum_matrix(m):
@@ -169,13 +168,13 @@ def matix_bombing_plan(m):
     for i in range(0, len(m)):
         for j in range(0, len(m[i])):
             if (i == 0 or i == len(m) - 1) and (j == 0 or j == len(m[i]) - 1):
-                result[(i,j)] = sum_matrix(m) - 3 * m[i][j]
-            elif (i == 0 or i == len(m) - 1) and (j != 0 or j != len(m[i]) - 1):
-                result[(i,j)] = sum_matrix(m) - 5 * m[i][j]
-            elif (j == 0 or j == len(m[i]) - 1) and (i != 0 or i != len(m) - 1):
-                result[(i,j)] = sum_matrix(m) - 5 * m[i][j]
+                result[(i, j)] = sum_matrix(m) - 3 * m[i][j]
+            elif (i == 0 or i == len(m) - 1) and(j != 0 or j != len(m[i]) - 1):
+                result[(i, j)] = sum_matrix(m) - 5 * m[i][j]
+            elif (j == 0 or j == len(m[i]) - 1) and(i != 0 or i != len(m) - 1):
+                result[(i, j)] = sum_matrix(m) - 5 * m[i][j]
             else:
-                result[(i,j)] = sum_matrix(m) - 8 * m[i][j]
+                result[(i, j)] = sum_matrix(m) - 8 * m[i][j]
     return result
 
 
@@ -200,7 +199,19 @@ def iterations_of_nan_expand(words):
     return words.count("Not a ")
 
 
-#def prime_factorization(n):
+def prime_factorization(n):
+    result = []
+    while n > 1:
+        for i in range(2, n+1):
+            if is_prime(i) is True:
+                counter = 0
+                while n % i == 0:
+                    counter += 1
+                    n = n / i
+                if counter > 0:
+                    result.append((i, counter))
+    return result
+
 
 def calculate_coins(value):
     result = {1: 0, 2: 0, 5: 0, 10: 0, 20: 0, 50: 0, 100: 0}
@@ -212,8 +223,6 @@ def calculate_coins(value):
                 result[i] += 1
                 value -= i
     return result
-
-
 
 
 def what_is_my_sign(day, month):
