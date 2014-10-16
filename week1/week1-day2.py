@@ -1,3 +1,6 @@
+from itertools import combinations
+
+
 class CashDesk:
 
     def __init__(self):
@@ -17,19 +20,19 @@ class CashDesk:
         return totalsum
 
     def can_withdraw_money(self, amount_of_money):
-        copy_of_money = self.money
-        result = {1: 0, 2: 0, 5: 0, 10: 0, 20: 0, 50: 0, 100: 0}
-        MONEH = [100, 50, 20, 10, 5, 2, 1]
-        while amount_of_money > 0:
-            for i in MONEH:
-                while amount_of_money - i >= 0:
-                    result[i] += 1
-                    amount_of_money -= i
-        for i in result:
-            copy_of_money[i] -= result[i]
-            if copy_of_money[i] < 0:
-                return False
-        return True
+        copy_of_money = dict(self.money)
+        all_moneyzzz = []
+        combinationslist = []
+        for i in copy_of_money:
+            for j in range(0, copy_of_money[i]):
+                all_moneyzzz.append(i)
+        for i in range(1, len(all_moneyzzz) + 1):
+            combinationslist.append(list(combinations(all_moneyzzz, i)))
+        for i in combinationslist:
+            for j in i:
+                if sum(j) == amount_of_money:
+                    return True
+        return False
 
 
 class Product:
