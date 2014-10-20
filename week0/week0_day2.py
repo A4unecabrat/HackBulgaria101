@@ -1,9 +1,11 @@
+
+
 def count_words(arr):
     result = {}
     for i in arr:
         if i in result:
             result[i] += 1
-        else:
+        elif i not in result and i.isalpha():
             result[i] = 1
     return result
 
@@ -23,6 +25,10 @@ def groupby(func, seq):
 
 
 def prepare_meal(number):
+    if number < 0:
+        return False
+    elif number == 0:
+        return ""
     result = ""
     dev = 3
     while (dev < number):
@@ -47,5 +53,34 @@ def reduce_file_path(path):
 
 
 def is_an_bn(word):
-    # n e ot 1 do len(word) / 2 :D:D
     pass
+
+
+def simplify_fraction(fraction):
+    a = [fraction[0], fraction[1]]
+    if a[0] < a[1]:
+        for i in range(2, a[1]):
+            while(a[0] % i == 0 and a[1] % i == 0):
+                a[0] = a[0] / i
+                a[1] = a[1] / i
+    else:
+        for i in range(2, a[0]):
+            while(a[0] % i == 0 and a[1] % i == 0):
+                a[0] = a[0] / i
+                a[1] = a[1] / i
+    return tuple(a)
+
+
+def sort_fractions(fractions):
+    return (sorted(fractions, key=lambda x: float(x[0]) / float(x[1])))
+
+
+def nth_fib_lists(listA, listB, n):
+    if n == 1:
+        return listA
+    elif n == 2:
+        return listB
+    else:
+        return nth_fib_lists(listA, listB, n - 2) + nth_fib_lists(listA, listB, n - 1)
+
+#print(nth_fib_lists([], [], 100))

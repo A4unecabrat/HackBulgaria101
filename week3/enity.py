@@ -1,16 +1,11 @@
-from enity import Enity
+class Enity():
 
+    def __init__(self, name, health):
+        self.name = name
+        self.health = health
+        self.battlehp = health
 
-class Hero(Enity):
-
-    def __init__(self, name, health, nickname):
-        super().__init__(name, health)
-        self.nickname = nickname
-
-    def known_as(self):
-        return "{} the {}".format(self.name, self.nickname)
-
-""" def get_health(self):
+    def get_health(self):
         return self.battlehp
 
     def is_alive(self):
@@ -32,4 +27,4 @@ class Hero(Enity):
             return True
         else:
             self.battlehp += healing
-            return True"""
+            return True

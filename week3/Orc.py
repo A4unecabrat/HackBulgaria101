@@ -1,16 +1,13 @@
 from enity import Enity
 
 
-class Hero(Enity):
+class Orc(Enity):
 
-    def __init__(self, name, health, nickname):
+    def __init__(self, name, health, berserkfactor):
         super().__init__(name, health)
-        self.nickname = nickname
+        self.berserkfactor = berserkfactor
 
-    def known_as(self):
-        return "{} the {}".format(self.name, self.nickname)
-
-""" def get_health(self):
+"""   def get_health(self):
         return self.battlehp
 
     def is_alive(self):
