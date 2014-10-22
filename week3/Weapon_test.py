@@ -13,8 +13,11 @@ class TestWeapon(unittest.TestCase):
     def test_wepon_error(self):
         with self.assertRaises(ValueError):
             randomwep = Weapon("random", 45, 3)
-
-    def test_critical_hit(self):
-        pass
+"""    def test_critical_hit(self):
+        hammer = Weapon("hammer_of_ivo", 0, 0)
+        result = []
+        for x in range(1000):
+            result.append(hammer.critical_hit())
+        self.assertContain"""
 if __name__ == '__main__':
     unittest.main()

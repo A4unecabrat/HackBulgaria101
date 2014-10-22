@@ -4,8 +4,17 @@ from enity import Enity
 class Orc(Enity):
 
     def __init__(self, name, health, berserkfactor):
-        super().__init__(name, health)
+        Enity.__init__(self, name, health)
         self.berserkfactor = berserkfactor
+
+    def attack(self):
+        if self.has_weapon():
+            if self.weapon.critical_hit():
+                return self.berserkfactor * self.weapon.damage * 2
+            else:
+                return self.berserkfactor * self.weapon.damage
+        else:
+            return 0
 
 """   def get_health(self):
         return self.battlehp

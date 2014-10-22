@@ -4,7 +4,7 @@ from enity import Enity
 class Hero(Enity):
 
     def __init__(self, name, health, nickname):
-        super().__init__(name, health)
+        Enity.__init__(self, name, health)
         self.nickname = nickname
 
     def known_as(self):
