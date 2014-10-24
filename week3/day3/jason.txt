@@ -1,0 +1,21 @@
+{
+    "songs": [
+        {
+            "album": "One Piece OST",
+            "length": 240,
+            "title": "We Are!",
+            "rating": 5,
+            "bitrate": 512,
+            "artist": "Hiroshi Kitadani"
+        },
+        {
+            "album": "One Piece OST",
+            "length": 240,
+            "title": "We Are!",
+            "rating": 5,
+            "bitrate": 512,
+            "artist": "Hiroshi Kitadani"
+        }
+    ],
+    "name": "random"
+}
