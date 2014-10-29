@@ -53,17 +53,14 @@ class Playlist():
             song.length % 60) for song in self.songlist)
 
     def save(self, file_name):
-        json_dict = {"name": self.name,
+        """json_dict = {"name": self.name,
                      "songs": [{"title": song.title,
                                 "artist": song.artist,
                                 "album": song.album,
                                 "rating": song.rating,
                                 "length": song.length,
                                 "bitrate": song.bitrate}
-                               for song in self.songlist]}
+                               for song in self.songlist]}"""
         f = open(file_name, 'r+')
-        f.write(json.dumps(json_dict, indent=4, separators=(',', ': ')))
+        f.write(json.dumps(self.__dict__, indent=4, separators=(',', ': ')))
         f.close()
-
-    def load(self):
-        pass

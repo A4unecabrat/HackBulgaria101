@@ -15,6 +15,7 @@ class Playlisttest(unittest.TestCase):
         self.playlist.add_song(song2)
 
     def test_save(self):
-        self.playlist.save("jason.txt")
+        #self.playlist.save("jason.txt")
+        print(self.playlist.__dict__)
 if __name__ == '__main__':
     unittest.main()
