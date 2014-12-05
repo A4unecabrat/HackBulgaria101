@@ -13,15 +13,17 @@ def show_movies():
 def show_movie_projections(movie_id, date_id):
     if date_id == "0":
         list_of_porjections = db.execute(
-            '''SELECT date, time, type FROM Projections WHERE movie_id = ?ORDER BY date ''', (movie_id,))
+            '''SELECT date, time, type FROM Projections
+            WHERE movie_id = ?ORDER BY date ''', (movie_id,))
         movie = db.execute(
-            '''SELECT name FROM Movies WHERE id = ?''', (movie_id,))
+            '''SELECT name FROM Movies WHERE id = ?''', (movie_id,)).fetchone()
         print("Projections for movie '{}'".format(movie[0]))
         for row in list_of_porjections:
             print("{} {} {}".format(row[0], row[1], row[2]))
     else:
         list_of_porjections = db.execute(
-            '''SELECT date, time, type FROM Projections WHERE date = ?''', (date_id))
+            '''SELECT date, time, type FROM Projections WHERE date = ?''',
+            (date_id))
         movie = db.execute(
             '''SELECT name FROM Movies WHERE id = ?''', (movie_id,))
         print(movie[0])
